@@ -10,7 +10,7 @@ import (
 var onceInit sync.Once
 var Bot *tgbotapi.BotAPI
 
-// StartBot launches a Telegram bot with the given token and debug settings
+// StartBot запускает бота Telegram с заданным токеном и настройками отладки
 func StartBot(l *logpac.Logger) {
 	onceInit.Do(func() {
 		var err error

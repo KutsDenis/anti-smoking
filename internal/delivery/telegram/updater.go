@@ -12,12 +12,12 @@ func Update(bot *tgbotapi.BotAPI, l *logpac.Logger) {
 	updates := bot.GetUpdatesChan(upd)
 
 	for update := range updates {
-		/* Перехват колбэков */
+		// Перехват колбэков
 		if update.CallbackQuery != nil {
 			// todo
 		}
 
-		/* Игнорирование любых обновлений кроме сообщений */
+		// Игнорирование любых обновлений кроме сообщений
 		if update.Message == nil {
 			continue
 		}

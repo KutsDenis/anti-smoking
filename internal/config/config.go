@@ -6,7 +6,7 @@ import (
 	"sync"
 )
 
-// Config contains the Telegram bot parameters
+// Config содержит параметры бота Telegram
 type Config struct {
 	Bot struct {
 		Token    string `yaml:"token"`
@@ -16,17 +16,16 @@ type Config struct {
 	} `yaml:"bot"`
 }
 
-// Get contains the configuration
+// Get содержит конфигурацию
 var Get *Config
 
-// onceCfg is used for initializing the configuration
+// onceCfg используется для инициализации конфигурации
 var onceCfg sync.Once
 
 const configPath = "configs/config.yml"
 
-// GetConfig get the configuration from a file.
-// The configuration file has a YAML format and contains the Telegram bot parameters,
-// such as the token, administrator and group identifiers, as well as the timezone
+// GetConfig получает конфигурацию из файла.
+// Файл конфигурации имеет формат YAML и содержит параметры бота Telegram
 func GetConfig(l *logpac.Logger) {
 	onceCfg.Do(func() {
 		Get = &Config{}
