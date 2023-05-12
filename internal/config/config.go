@@ -3,7 +3,6 @@ package config
 import (
 	"github.com/KutsDenis/logpac"
 	"github.com/ilyakaznacheev/cleanenv"
-	"os"
 	"sync"
 )
 
@@ -19,23 +18,19 @@ type Config struct {
 // Get содержит конфигурацию
 var Get *Config
 
+// Путь до конфиг файла
+const configPath = "config.yml"
+
 // onceCfg используется для инициализации конфигурации
 var onceCfg sync.Once
 
 // GetConfig получает конфигурацию из файла.
 // Файл конфигурации имеет формат YAML и содержит параметры бота Telegram
 func GetConfig(l *logpac.Logger) {
-	configPath := "config.yml"
-
 	onceCfg.Do(func() {
 		Get = &Config{}
 
-		_, err := os.Stat(configPath)
-		if os.IsNotExist(err) {
-			configPath = "../../" + configPath
-		}
-
-		if err = cleanenv.ReadConfig(configPath, Get); err != nil {
+		if err := cleanenv.ReadConfig(configPath, Get); err != nil {
 			l.Fatalf("%s", err)
 		}
 	})
