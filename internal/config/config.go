@@ -13,6 +13,13 @@ type Config struct {
 		Owner int64  `yaml:"owner"`
 		Debug bool   `yaml:"debug"`
 	} `yaml:"bot"`
+	DB struct {
+		Host     string `yaml:"host"`
+		Port     uint8  `yaml:"port"`
+		User     string `yaml:"user"`
+		Password string `yaml:"password"`
+		Name     string `yaml:"name"`
+	}
 }
 
 // Get содержит конфигурацию
